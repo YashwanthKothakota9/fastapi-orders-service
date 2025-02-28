@@ -21,7 +21,7 @@ class StatusEnum(Enum):
     delivered = "delivered"
 
 
-class OrderItemSchema(BaseModel):
+class OrderItemSchema(BaseModel, extra="forbid"):
     product: str
     size: Size
     quantity: Optional[int] = Field(default=1, ge=1)
@@ -32,7 +32,7 @@ class OrderItemSchema(BaseModel):
         return value
 
 
-class CreateOrderSchema(BaseModel):
+class CreateOrderSchema(BaseModel, extra="forbid"):
     order: List[OrderItemSchema] = Field(..., min_length=1)
 
 
